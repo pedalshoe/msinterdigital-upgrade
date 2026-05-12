@@ -5,9 +5,10 @@
   --white:#FFFFFF;--cream:#FAF7F2;--text:#1A1018;--text-muted:#6B5E7A;--radius:12px;
   --teal:#1A9EAA;
 }
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden;max-width:100%}
 site-header,site-footer{display:block}
+img,svg,video,canvas{max-width:100%;height:auto}
 .serif{font-family:'Cormorant Garamond',Georgia,serif}
 .btn-gold{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--purple);font-weight:500;font-size:.9rem;padding:.75rem 1.8rem;border-radius:50px;text-decoration:none;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;letter-spacing:.04em}
 .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,.5)}
@@ -22,7 +23,7 @@ site-header,site-footer{display:block}
 hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.5rem 0;opacity:.5}
 
 /* TOPBAR */
-#topbar{background:var(--purple);color:rgba(255,255,255,.8);font-size:.8rem;text-align:center;padding:.45rem 1rem;letter-spacing:.04em}
+#topbar{background:var(--purple);color:rgba(255,255,255,.8);font-size:.8rem;text-align:center;padding:.45rem 1rem;letter-spacing:.04em;overflow-wrap:anywhere}
 #topbar a{color:var(--gold-light);text-decoration:none}
 
 /* NAV */
@@ -185,7 +186,7 @@ footer{background:var(--purple);color:rgba(255,255,255,.75);padding:4rem 1.5rem 
 @media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
 .sticky-book{display:none}
 @media(max-width:768px){.sticky-book{display:flex;position:fixed;bottom:1.25rem;
-  left:50%;transform:translateX(-50%);z-index:200;white-space:nowrap;
-  box-shadow:0 8px 32px rgba(74,44,107,.4)}}
+  left:1rem;right:1rem;transform:none;z-index:200;white-space:normal;
+  text-align:center;justify-content:center;box-shadow:0 8px 32px rgba(74,44,107,.4)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{animation:fadeUp .6s ease both}

@@ -56,7 +56,7 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
   border-radius:50px;padding:.35rem 1rem;
   font-size:.75rem;letter-spacing:.12em;color:var(--gold-light);
   text-transform:uppercase;margin-bottom:1.5rem;
-  backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);max-width:100%;
 }
 .hero-title{
   font-family:'Cormorant Garamond',Georgia,serif;
@@ -119,7 +119,11 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
   .hero-content{grid-template-columns:1fr}
   .hero-float-card{display:none}
 }
-@media(max-width:480px){.hero-title{font-size:2.5rem}}
+@media(max-width:480px){
+  .hero-title{font-size:2.5rem}
+  .hero-eyebrow{display:flex;white-space:normal}
+  .hero-actions a{width:100%;text-align:center}
+}
 
 /* ── SCENIC DIVIDER ── */
 .scene-divider{
