@@ -6,8 +6,9 @@
   --teal:#1A9EAA;
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden;max-width:100%}
-site-header,site-footer{display:block;width:100%;overflow-x:clip}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden;max-width:100%;padding-top:var(--site-header-offset,0px)}
+site-header{display:block;width:100%;overflow-x:clip;position:fixed;top:0;left:0;right:0;z-index:300;background:var(--white)}
+site-footer{display:block;width:100%;overflow-x:clip}
 img,svg,video,canvas{max-width:100%;height:auto}
 .serif{font-family:'Cormorant Garamond',Georgia,serif}
 .btn-gold{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--purple);font-weight:500;font-size:.9rem;padding:.75rem 1.8rem;border-radius:50px;text-decoration:none;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;letter-spacing:.04em}
@@ -27,7 +28,7 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
 #topbar a{color:var(--gold-light);text-decoration:none}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.2);padding:.85rem 1.5rem}
+nav{position:relative;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.2);padding:.85rem 1.5rem}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:48px;min-width:0}
 .logo-text{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:600;color:var(--purple);text-decoration:none;line-height:1;min-width:0}
 .logo-text span{display:block;font-size:.6rem;font-weight:400;letter-spacing:.18em;color:var(--gold-deep);text-transform:uppercase;margin-top:3px}

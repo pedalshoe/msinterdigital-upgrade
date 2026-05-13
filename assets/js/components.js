@@ -15,6 +15,16 @@ function isServicesPage(page) {
   return ["services", "counseling", "coaching"].includes(page);
 }
 
+function updateHeaderOffset() {
+  const siteHeader = document.querySelector("site-header");
+  if (!siteHeader) return;
+
+  document.documentElement.style.setProperty(
+    "--site-header-offset",
+    `${siteHeader.offsetHeight}px`
+  );
+}
+
 function headerTemplate(page) {
   const navLink = (href, label, isActive) =>
     `<li><a href="${href}"${isActive ? ' class="active"' : ""}>${label}</a></li>`;
@@ -106,6 +116,8 @@ class SiteHeader extends HTMLElement {
   connectedCallback() {
     const page = document.body.dataset.page || "";
     this.innerHTML = headerTemplate(page);
+    updateHeaderOffset();
+    window.requestAnimationFrame(updateHeaderOffset);
   }
 }
 
@@ -122,3 +134,6 @@ if (!customElements.get("site-header")) {
 if (!customElements.get("site-footer")) {
   customElements.define("site-footer", SiteFooter);
 }
+
+window.addEventListener("load", updateHeaderOffset);
+window.addEventListener("resize", updateHeaderOffset);
