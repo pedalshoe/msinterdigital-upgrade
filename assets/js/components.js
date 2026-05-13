@@ -43,7 +43,13 @@ function headerTemplate(page) {
           ${navLink(sitePages.contact, "Contact", page === "contact")}
         </ul>
         <div class="nav-cta-wrap">
-          <a href="${sitePages.contact}" class="btn-gold">Book Free Consultation</a>
+          
+          <!-- Calendly link widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<a href="" class="btn-gold header-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/kdf-msinterdigital'});return false;">
+Schedule<span class="header-cta-detail">&nbsp;a Consultation</span></a>
+<!-- Calendly link widget end -->
         </div>
         <button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation">
           <span></span><span></span><span></span>

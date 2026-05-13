@@ -31,6 +31,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:48px;min-width:0}
 .logo-text{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;font-weight:600;color:var(--purple);text-decoration:none;line-height:1;min-width:0}
 .logo-text span{display:block;font-size:.6rem;font-weight:400;letter-spacing:.18em;color:var(--gold-deep);text-transform:uppercase;margin-top:3px}
+.nav-cta-wrap{display:flex;align-items:center;flex-shrink:0}
+.header-cta{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;line-height:1;color:var(--purple)!important}
+.header-cta:visited{color:var(--purple)!important}
 .nav-links{display:flex;align-items:center;gap:0;list-style:none;position:relative}
 .nav-links > li{position:relative}
 .nav-links > li > a{text-decoration:none;font-size:.86rem;font-weight:400;color:var(--text-muted);transition:color .2s;padding:.4rem .75rem;display:block;position:relative}
@@ -43,7 +46,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-
 .dropdown a:hover{background:var(--purple-pale);color:var(--purple)}
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:.25rem}
 .hamburger span{display:block;width:22px;height:2px;background:var(--purple);margin:4px 0}
-@media(max-width:860px){.nav-links,.nav-cta-wrap{display:none}.hamburger{display:block;flex-shrink:0}.nav-links.is-open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:1rem 1.5rem;border-bottom:1px solid rgba(201,168,76,.2);gap:.5rem;z-index:99}.nav-cta-wrap[style]{display:block!important}}
+@media(max-width:860px){.nav-links{display:none}.nav-cta-wrap{display:flex;align-items:center;margin-left:auto}.header-cta{font-size:.78rem;padding:.65rem 1rem}.hamburger{display:block;flex-shrink:0}.nav-links.is-open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:1rem 1.5rem;border-bottom:1px solid rgba(201,168,76,.2);gap:.5rem;z-index:99}}
 
 /* PAGE HERO BANNER (non-homepage) */
 .page-hero{
@@ -193,6 +196,8 @@ footer{background:var(--purple);color:rgba(255,255,255,.75);padding:4rem 1.5rem 
   .nav-inner{gap:.75rem}
   .logo-text{font-size:1.15rem}
   .logo-text span{font-size:.52rem;letter-spacing:.12em}
+  .header-cta{font-size:.72rem;padding:.58rem .85rem}
+  .header-cta-detail{display:none}
   .footer-bottom{overflow-wrap:anywhere}
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}

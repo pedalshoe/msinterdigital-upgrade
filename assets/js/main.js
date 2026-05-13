@@ -23,30 +23,12 @@ function bindNewsletterForm() {
 function bindMobileMenu() {
   const hamburgerButton = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
-  const navCtaWrap = document.querySelector(".nav-cta-wrap");
 
   if (!hamburgerButton || !navLinks) return;
 
   hamburgerButton.addEventListener("click", () => {
     const isOpen = navLinks.classList.toggle("is-open");
     hamburgerButton.setAttribute("aria-expanded", String(isOpen));
-
-    if (!navCtaWrap) return;
-
-    navCtaWrap.style.display = isOpen ? "block" : "";
-    if (isOpen) {
-      navCtaWrap.style.position = "absolute";
-      navCtaWrap.style.top = "calc(64px + 12.5rem)";
-      navCtaWrap.style.left = "1.5rem";
-      navCtaWrap.style.right = "1.5rem";
-      navCtaWrap.style.zIndex = "100";
-    } else {
-      navCtaWrap.style.position = "";
-      navCtaWrap.style.top = "";
-      navCtaWrap.style.left = "";
-      navCtaWrap.style.right = "";
-      navCtaWrap.style.zIndex = "";
-    }
   });
 }
 
