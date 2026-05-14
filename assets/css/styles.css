@@ -8,7 +8,7 @@ section{padding:5rem 1.5rem}
 hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.5rem 0;opacity:.5}
 
 /* ══════════════════════════════════
-   HERO — Full bleed Santorini image
+   HERO - Full bleed Santorini image
    ══════════════════════════════════ */
 #hero{
   position:relative;
