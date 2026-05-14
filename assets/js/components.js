@@ -37,6 +37,8 @@ function headerTemplate(page) {
     `<li><a href="${href}"${isActive ? ' class="active"' : ""}>${label}</a></li>`;
 
   return `
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     <div id="topbar">
       📞 <a href="tel:${phoneNumber}">${displayPhoneNumber}</a> &nbsp;·&nbsp;
       ✉ <a href="mailto:${contactEmail}">${contactEmail}</a> &nbsp;·&nbsp;
@@ -60,17 +62,16 @@ function headerTemplate(page) {
           ${navLink(sitePages.contact, "Contact", page === "contact")}
         </ul>
         <div class="nav-cta-wrap">
-          <a
-            href="${calendlyUrl}"
-            class="btn-gold header-cta"
-            data-calendly-link
-            target="_blank"
-            rel="noopener noreferrer"
-          >Schedule<span class="header-cta-detail">&nbsp;a Consultation</span></a>
-        </div>
-        <button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation">
-          <span></span><span></span><span></span>
-        </button>
+   
+
+          <!-- Calendly link widget begin -->
+          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+          <a href="" class="btn-gold" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/kdf-msinterdigital'});return false;">
+            Schedule<span class="header-cta-detail">&nbsp;a Consultation</span></a>
+          <!-- Calendly link widget end -->
+
+
       </div>
     </nav>
   `;

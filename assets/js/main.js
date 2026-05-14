@@ -20,44 +20,6 @@ function bindNewsletterForm() {
   });
 }
 
-function ensureCalendlyAssets() {
-  if (document.querySelector('script[data-calendly-script]')) return;
-
-  const stylesheet = document.createElement("link");
-  stylesheet.rel = "stylesheet";
-  stylesheet.href = "https://assets.calendly.com/assets/external/widget.css";
-  stylesheet.setAttribute("data-calendly-style", "true");
-
-  const script = document.createElement("script");
-  script.src = "https://assets.calendly.com/assets/external/widget.js";
-  script.async = true;
-  script.setAttribute("data-calendly-script", "true");
-
-  document.head.append(stylesheet, script);
-}
-
-function bindCalendlyLinks() {
-  const calendlyLinks = document.querySelectorAll("[data-calendly-link]");
-  if (!calendlyLinks.length) return;
-
-  ensureCalendlyAssets();
-
-  calendlyLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      if (!window.Calendly || typeof window.Calendly.initPopupWidget !== "function") {
-        return;
-      }
-
-      event.preventDefault();
-
-      const url = link.getAttribute("href");
-      if (!url) return;
-
-      window.Calendly.initPopupWidget({ url });
-    });
-  });
-}
-
 function bindMobileMenu() {
   const hamburgerButton = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
@@ -117,7 +79,6 @@ function bindContactForm() {
 
 document.addEventListener("DOMContentLoaded", () => {
   bindNewsletterForm();
-  bindCalendlyLinks();
   bindMobileMenu();
   bindContactForm();
 });
