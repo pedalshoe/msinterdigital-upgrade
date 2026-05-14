@@ -15,7 +15,7 @@ hr.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,v
   min-height:100vh;
   display:flex;
   flex-direction:column;
-  justify-content:flex-end;
+  justify-content:center;
   overflow:hidden;
 }
 .hero-bg{
