@@ -32,13 +32,30 @@ function updateHeaderOffset() {
   );
 }
 
+function ensureCalendlyWidget() {
+  if (!document.querySelector('link[data-calendly-widget="true"]')) {
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = "https://assets.calendly.com/assets/external/widget.css";
+    stylesheet.setAttribute("data-calendly-widget", "true");
+    document.head.appendChild(stylesheet);
+  }
+
+  if (!document.querySelector('script[data-calendly-widget="true"]')) {
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.type = "text/javascript";
+    script.async = true;
+    script.setAttribute("data-calendly-widget", "true");
+    document.head.appendChild(script);
+  }
+}
+
 function headerTemplate(page) {
   const navLink = (href, label, isActive) =>
     `<li><a href="${href}"${isActive ? ' class="active"' : ""}>${label}</a></li>`;
 
   return `
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     <div id="topbar">
       📞 <a href="tel:${phoneNumber}">${displayPhoneNumber}</a> &nbsp;·&nbsp;
       ✉ <a href="mailto:${contactEmail}">${contactEmail}</a> &nbsp;·&nbsp;
@@ -62,16 +79,12 @@ function headerTemplate(page) {
           ${navLink(sitePages.contact, "Contact", page === "contact")}
         </ul>
         <div class="nav-cta-wrap">
-   
-
-          <!-- Calendly link widget begin -->
-          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-          <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-          <a href="" class="btn-gold" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/kdf-msinterdigital'});return false;">
+          <a href="#" class="btn-gold header-cta" onclick="Calendly.initPopupWidget({url: '${calendlyUrl}'});return false;">
             Schedule<span class="header-cta-detail">&nbsp;a Consultation</span></a>
-          <!-- Calendly link widget end -->
-
-
+        </div>
+        <button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </nav>
   `;
@@ -122,6 +135,7 @@ function footerTemplate() {
 
 class SiteHeader extends HTMLElement {
   connectedCallback() {
+    ensureCalendlyWidget();
     const page = document.body.dataset.page || "";
     this.innerHTML = headerTemplate(page);
     updateHeaderOffset();
