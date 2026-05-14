@@ -4,6 +4,15 @@
   "trailingSlash": false,
   "headers": [
     {
+      "source": "/assets/js/components.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
       "source": "/assets/(.*)",
       "headers": [
         {

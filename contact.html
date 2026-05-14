@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/main.css">
-<script src="/assets/js/components.js"></script>
+<script src="/assets/js/components.js?v=20260514"></script>
 </head>
 <body data-page="contact">
 
@@ -34,68 +34,74 @@
       <div class="contact-form">
         <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.7rem;color:var(--purple);margin-bottom:.5rem">Let's Connect</h2>
         <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:1.75rem">Fill out the form below and we'll reach out to schedule your free consultation.</p>
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="first_name" placeholder="Your first name" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" placeholder="Your last name" required autocomplete="family-name">
+            </div>
+          </div>
 
-        <div class="form-row">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+            </div>
+          </div>
+
           <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" id="fname" placeholder="Your first name">
+            <label>What are you looking for?</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item"><input type="checkbox" name="services" value="Counseling / Therapy"> Counseling / Therapy</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="Coaching / Mentoring"> Coaching / Mentoring</label>
+              <label class="checkbox-item"><input type="checkbox" name="services" value="General Inquiry"> General Inquiry</label>
+            </div>
           </div>
+
           <div class="form-group">
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" placeholder="Your last name">
+            <label>Age Group</label>
+            <div class="checkbox-group" style="flex-direction:row;flex-wrap:wrap;gap:1rem">
+              <label class="checkbox-item"><input type="radio" name="age_group" value="5-12"> 5-12</label>
+              <label class="checkbox-item"><input type="radio" name="age_group" value="13-20"> 13-20</label>
+              <label class="checkbox-item"><input type="radio" name="age_group" value="21+"> 21+</label>
+            </div>
           </div>
-        </div>
 
-        <div class="form-row">
           <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="you@example.com">
+            <label>Life-Changing Event?</label>
+            <div class="checkbox-group" style="flex-direction:row;gap:2rem">
+              <label class="checkbox-item"><input type="radio" name="life_event" value="Yes"> Yes</label>
+              <label class="checkbox-item"><input type="radio" name="life_event" value="No"> No</label>
+            </div>
           </div>
+
           <div class="form-group">
-            <label for="phone">Phone (optional)</label>
-            <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
+            <label for="source">How did you hear about us?</label>
+            <select id="source" name="source">
+              <option value="">Please select...</option>
+              <option value="YouTube">YouTube</option>
+              <option value="Referral">Referral</option>
+              <option value="Social Media">Social Media</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label>What are you looking for?</label>
-          <div class="checkbox-group">
-            <label class="checkbox-item"><input type="checkbox"> Counseling / Therapy</label>
-            <label class="checkbox-item"><input type="checkbox"> Coaching / Mentoring</label>
-            <label class="checkbox-item"><input type="checkbox"> General Inquiry</label>
+          <div class="form-group">
+            <label for="message">Anything you'd like us to know?</label>
+            <textarea id="message" name="message" rows="5" placeholder="Share what support you're looking for, your goals, or any scheduling preferences."></textarea>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label>Age Group</label>
-          <div class="checkbox-group" style="flex-direction:row;flex-wrap:wrap;gap:1rem">
-            <label class="checkbox-item"><input type="radio" name="age"> 5–12</label>
-            <label class="checkbox-item"><input type="radio" name="age"> 13–20</label>
-            <label class="checkbox-item"><input type="radio" name="age"> 21+</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Life-Changing Event?</label>
-          <div class="checkbox-group" style="flex-direction:row;gap:2rem">
-            <label class="checkbox-item"><input type="radio" name="event"> Yes</label>
-            <label class="checkbox-item"><input type="radio" name="event"> No</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="source">How did you hear about us?</label>
-          <select id="source">
-            <option value="">Please select...</option>
-            <option>YouTube</option>
-            <option>Referral</option>
-            <option>Social Media</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <button onclick="submitForm()" class="btn-gold" style="width:100%;text-align:center;font-size:1rem;padding:.9rem">Submit →</button>
-        <p id="form-msg" style="font-size:.85rem;margin-top:.75rem;min-height:1.2em"></p>
+          <button type="submit" class="btn-gold" style="width:100%;text-align:center;font-size:1rem;padding:.9rem">Submit →</button>
+          <p id="form-msg" style="font-size:.85rem;margin-top:.75rem;min-height:1.2em"></p>
+        </form>
       </div>
 
       <!-- CONTACT INFO SIDEBAR -->
@@ -124,13 +130,7 @@
         <div class="card">
           <h3>Schedule Directly</h3>
           <p style="margin-bottom:1.25rem">Prefer to book a time slot right away? Use our Calendly scheduler to find a time that works for you.</p>
-          <!-- Replace with your Calendly link -->
-          <!--a href="#" class="btn-gold" style="display:block;text-align:center">Open Scheduler →</a-->
-          <!-- Calendly link widget begin -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-<a href="" class="btn-gold" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/kdf-msinterdigital'});return false;"><!--button class="calendly-button"-->Schedule a Free Consultation<!--/button--></a>
-<!-- Calendly link widget end -->
+          <a href="https://calendly.com/kdf-msinterdigital" class="btn-gold" style="display:block;text-align:center" data-calendly-link target="_blank" rel="noopener noreferrer">Schedule a Free Consultation</a>
         </div>
 
         <div class="card" style="background:var(--gold-pale)">

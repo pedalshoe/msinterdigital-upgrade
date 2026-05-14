@@ -7,9 +7,16 @@ const sitePages = {
   products: "educational-products.html",
   affiliate: "affiliate-marketing.html",
   contact: "contact.html",
+  privacy: "privacy-policy.html",
+  terms: "terms-and-conditions.html",
+  cookies: "cookie-policy.html",
 };
 
 const currentYear = new Date().getFullYear();
+const phoneNumber = "+15162345678";
+const displayPhoneNumber = "+1 (516) 234-5678";
+const contactEmail = "kdf@msinterdigital.com";
+const calendlyUrl = "https://calendly.com/kdf-msinterdigital";
 
 function isServicesPage(page) {
   return ["services", "counseling", "coaching"].includes(page);
@@ -31,8 +38,8 @@ function headerTemplate(page) {
 
   return `
     <div id="topbar">
-      📞 <a href="tel:+15162345678">+1 (516) 234-5678</a> &nbsp;·&nbsp;
-      ✉ <a href="mailto:kdf@msinterdigital.com">kdf@msinterdigital.com</a> &nbsp;·&nbsp;
+      📞 <a href="tel:${phoneNumber}">${displayPhoneNumber}</a> &nbsp;·&nbsp;
+      ✉ <a href="mailto:${contactEmail}">${contactEmail}</a> &nbsp;·&nbsp;
       Licensed Mental Health Counselor &amp; Certified Guidance Counselor
     </div>
     <nav>
@@ -53,13 +60,13 @@ function headerTemplate(page) {
           ${navLink(sitePages.contact, "Contact", page === "contact")}
         </ul>
         <div class="nav-cta-wrap">
-          
-          <!-- Calendly link widget begin -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-<a href="" class="btn-gold header-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/kdf-msinterdigital'});return false;">
-Schedule<span class="header-cta-detail">&nbsp;a Consultation</span></a>
-<!-- Calendly link widget end -->
+          <a
+            href="${calendlyUrl}"
+            class="btn-gold header-cta"
+            data-calendly-link
+            target="_blank"
+            rel="noopener noreferrer"
+          >Schedule<span class="header-cta-detail">&nbsp;a Consultation</span></a>
         </div>
         <button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation">
           <span></span><span></span><span></span>
@@ -98,14 +105,14 @@ function footerTemplate() {
         <div class="footer-col"><h4>Company</h4><ul>
           <li><a href="${sitePages.about}">About</a></li>
           <li><a href="${sitePages.contact}">Contact</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms &amp; Conditions</a></li>
-          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="${sitePages.privacy}">Privacy Policy</a></li>
+          <li><a href="${sitePages.terms}">Terms &amp; Conditions</a></li>
+          <li><a href="${sitePages.cookies}">Cookie Policy</a></li>
         </ul></div>
       </div>
       <div class="footer-bottom">
         <span>© ${currentYear} Ms. Interdigital. All rights reserved.</span>
-        <span>United States &nbsp;·&nbsp; <a href="tel:+15162345678">+1 (516) 234-5678</a> &nbsp;·&nbsp; <a href="mailto:kdf@msinterdigital.com">kdf@msinterdigital.com</a></span>
+        <span>United States &nbsp;·&nbsp; <a href="tel:${phoneNumber}">${displayPhoneNumber}</a> &nbsp;·&nbsp; <a href="mailto:${contactEmail}">${contactEmail}</a></span>
       </div>
     </footer>
     <a href="${sitePages.contact}" class="btn-gold sticky-book">📅 Book Free Consultation</a>

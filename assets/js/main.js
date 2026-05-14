@@ -20,6 +20,44 @@ function bindNewsletterForm() {
   });
 }
 
+function ensureCalendlyAssets() {
+  if (document.querySelector('script[data-calendly-script]')) return;
+
+  const stylesheet = document.createElement("link");
+  stylesheet.rel = "stylesheet";
+  stylesheet.href = "https://assets.calendly.com/assets/external/widget.css";
+  stylesheet.setAttribute("data-calendly-style", "true");
+
+  const script = document.createElement("script");
+  script.src = "https://assets.calendly.com/assets/external/widget.js";
+  script.async = true;
+  script.setAttribute("data-calendly-script", "true");
+
+  document.head.append(stylesheet, script);
+}
+
+function bindCalendlyLinks() {
+  const calendlyLinks = document.querySelectorAll("[data-calendly-link]");
+  if (!calendlyLinks.length) return;
+
+  ensureCalendlyAssets();
+
+  calendlyLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (!window.Calendly || typeof window.Calendly.initPopupWidget !== "function") {
+        return;
+      }
+
+      event.preventDefault();
+
+      const url = link.getAttribute("href");
+      if (!url) return;
+
+      window.Calendly.initPopupWidget({ url });
+    });
+  });
+}
+
 function bindMobileMenu() {
   const hamburgerButton = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
@@ -32,16 +70,54 @@ function bindMobileMenu() {
   });
 }
 
-window.submitForm = function submitForm() {
-  const msg = document.getElementById("form-msg");
-  if (!msg) return;
+function bindContactForm() {
+  const contactForm = document.getElementById("contact-form");
+  if (!contactForm) return;
 
-  msg.textContent = "Thanks for reaching out. We will be in touch soon.";
-  msg.style.color = "#4A2C6B";
-  msg.style.fontWeight = "500";
-};
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const firstName = String(formData.get("first_name") || "").trim();
+    const lastName = String(formData.get("last_name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const phone = String(formData.get("phone") || "").trim();
+    const serviceSelections = formData.getAll("services");
+    const ageGroup = String(formData.get("age_group") || "").trim();
+    const lifeEvent = String(formData.get("life_event") || "").trim();
+    const source = String(formData.get("source") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    const msg = document.getElementById("form-msg");
+
+    const lines = [
+      `Name: ${firstName} ${lastName}`.trim(),
+      `Email: ${email}`,
+      `Phone: ${phone || "Not provided"}`,
+      `Services: ${serviceSelections.length ? serviceSelections.join(", ") : "Not specified"}`,
+      `Age Group: ${ageGroup || "Not specified"}`,
+      `Recent Life-Changing Event: ${lifeEvent || "Not specified"}`,
+      `Referral Source: ${source || "Not specified"}`,
+      "",
+      "Message:",
+      message || "No additional details provided.",
+    ];
+
+    const subject = encodeURIComponent(`Consultation Request from ${firstName} ${lastName}`.trim());
+    const body = encodeURIComponent(lines.join("\n"));
+
+    window.location.href = `mailto:kdf@msinterdigital.com?subject=${subject}&body=${body}`;
+
+    if (msg) {
+      msg.textContent = "Your email app is opening with your consultation request. If it does not, email kdf@msinterdigital.com directly.";
+      msg.style.color = "#4A2C6B";
+      msg.style.fontWeight = "500";
+    }
+  });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   bindNewsletterForm();
+  bindCalendlyLinks();
   bindMobileMenu();
+  bindContactForm();
 });
