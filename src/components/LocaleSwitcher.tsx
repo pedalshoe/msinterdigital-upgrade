@@ -2,11 +2,11 @@
 
 import {useLocale, useTranslations} from 'next-intl';
 
-import {localeMeta} from '@/data/siteData';
+import {localeMeta, type LocaleCode} from '@/data/siteData';
 import {Link, usePathname} from '@/i18n/navigation';
 
 export default function LocaleSwitcher() {
-  const locale = useLocale();
+  const locale = useLocale() as LocaleCode;
   const pathname = usePathname();
   const t = useTranslations('LocaleSwitcher');
   const current = localeMeta[locale];
@@ -25,7 +25,7 @@ export default function LocaleSwitcher() {
           <Link
             key={code}
             href={pathname}
-            locale={code}
+            locale={code as LocaleCode}
             className={`locale-switcher-option${code === locale ? ' is-active' : ''}`}
           >
             <span className="locale-chip">

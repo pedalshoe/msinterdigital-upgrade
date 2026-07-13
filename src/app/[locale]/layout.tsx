@@ -1,3 +1,5 @@
+import type {ReactNode} from 'react';
+
 import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {getMessages, setRequestLocale} from 'next-intl/server';
 import {notFound} from 'next/navigation';
@@ -5,7 +7,6 @@ import Script from 'next/script';
 
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import {company} from '@/data/siteData';
 import {routing} from '@/i18n/routing';
 
 import '../globals.css';
@@ -14,7 +15,15 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
 }
 
-export default async function LocaleLayout({children, params}) {
+type LocaleLayoutProps = {
+  children: ReactNode;
+  params: Promise<{locale: string}>;
+};
+
+export default async function LocaleLayout({
+  children,
+  params
+}: LocaleLayoutProps) {
   const {locale} = await params;
 
   if (!hasLocale(routing.locales, locale)) {
@@ -25,7 +34,7 @@ export default async function LocaleLayout({children, params}) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} data-scroll-behavior="smooth">
       <body>
         <NextIntlClientProvider messages={messages}>
           <Script
@@ -42,12 +51,3 @@ export default async function LocaleLayout({children, params}) {
     </html>
   );
 }
-
-export const metadata = {
-  title: 'Ms. Interdigital',
-  description:
-    'Counseling, coaching, educational products, and wellness resources from Ms. Interdigital.',
-  icons: {
-    icon: '/assets/images/msid_favicon.svg'
-  }
-};

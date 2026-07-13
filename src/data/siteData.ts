@@ -1,3 +1,36 @@
+import type {CSSProperties} from 'react';
+
+export type LocaleCode = 'en' | 'es' | 'fr' | 'it';
+
+export type LocaleMeta = {
+  flag: string;
+  labelKey: LocaleCode;
+};
+
+export type Testimonial = {
+  quote: string;
+  author: string;
+};
+
+export type AffiliateCard = {
+  className: string;
+  badge: string;
+  title: string;
+  body: string;
+  href: string;
+  action: string;
+  style?: CSSProperties;
+  badgeStyle?: CSSProperties;
+  actionStyle?: CSSProperties;
+  containerStyle?: CSSProperties;
+};
+
+export type AffiliateSection = {
+  label: string;
+  title: string;
+  cards: AffiliateCard[];
+};
+
 export const company = {
   phoneHref: 'tel:+15162345678',
   phoneLabel: '+1 (516) 234-5678',
@@ -5,14 +38,14 @@ export const company = {
   calendlyUrl: 'https://calendly.com/kdf-msinterdigital'
 };
 
-export const localeMeta = {
+export const localeMeta: Record<LocaleCode, LocaleMeta> = {
   en: {flag: '🇺🇸', labelKey: 'en'},
   es: {flag: '🇪🇸', labelKey: 'es'},
   fr: {flag: '🇫🇷', labelKey: 'fr'},
   it: {flag: '🇮🇹', labelKey: 'it'}
 };
 
-export const testimonials = [
+export const testimonials: Testimonial[] = [
   {
     quote:
       'The affirmations in Breathe Peaceful genuinely helped me start my mornings with intention. Simple, grounding, and real.',
@@ -30,7 +63,7 @@ export const testimonials = [
   }
 ];
 
-export const reviews = [
+export const reviews: Testimonial[] = [
   {
     quote:
       'This eBook came into my life at the perfect time. Between work and family responsibilities I felt completely overwhelmed, and the affirmations helped me slow down and reconnect with myself. I now start every morning reading a few pages.',
@@ -48,7 +81,7 @@ export const reviews = [
   }
 ];
 
-export const affiliateSections = [
+export const affiliateSections: AffiliateSection[] = [
   {
     label: 'Skincare',
     title: 'Mented Cosmetics',
@@ -78,8 +111,7 @@ export const affiliateSections = [
     title: 'Melaleuca - The Wellness Company',
     cards: [
       {
-        className:
-          'aff-card aff-card-bg aff-card-melaleuca-member',
+        className: 'aff-card aff-card-bg aff-card-melaleuca-member',
         style: {borderColor: 'rgba(74,44,107,.2)', background: 'var(--purple-pale)'},
         badge: 'Membership',
         badgeStyle: {color: 'var(--purple-mid)'},

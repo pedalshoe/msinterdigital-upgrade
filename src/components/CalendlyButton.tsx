@@ -1,12 +1,21 @@
 'use client';
 
+import type {CSSProperties, MouseEvent, ReactNode} from 'react';
+
+type CalendlyButtonProps = {
+  href: string;
+  className: string;
+  children: ReactNode;
+  style?: CSSProperties;
+};
+
 export default function CalendlyButton({
   href,
   className,
   children,
   style
-}) {
-  const handleClick = (event) => {
+}: CalendlyButtonProps) {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
     if (typeof window !== 'undefined' && window.Calendly?.initPopupWidget) {

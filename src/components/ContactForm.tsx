@@ -1,13 +1,13 @@
 'use client';
 
-import {useState} from 'react';
+import {useState, type FormEvent} from 'react';
 
 import {company} from '@/data/siteData';
 
 export default function ContactForm() {
   const [message, setMessage] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -116,18 +116,31 @@ export default function ContactForm() {
 
       <div className="form-group">
         <label>Age Group</label>
-        <div className="checkbox-group" style={{flexDirection: 'row', flexWrap: 'wrap', gap: '1rem'}}>
-          <label className="checkbox-item"><input type="radio" name="age_group" value="5-12" /> 5-12</label>
-          <label className="checkbox-item"><input type="radio" name="age_group" value="13-20" /> 13-20</label>
-          <label className="checkbox-item"><input type="radio" name="age_group" value="21+" /> 21+</label>
+        <div
+          className="checkbox-group"
+          style={{flexDirection: 'row', flexWrap: 'wrap', gap: '1rem'}}
+        >
+          <label className="checkbox-item">
+            <input type="radio" name="age_group" value="5-12" /> 5-12
+          </label>
+          <label className="checkbox-item">
+            <input type="radio" name="age_group" value="13-20" /> 13-20
+          </label>
+          <label className="checkbox-item">
+            <input type="radio" name="age_group" value="21+" /> 21+
+          </label>
         </div>
       </div>
 
       <div className="form-group">
         <label>Life-Changing Event?</label>
         <div className="checkbox-group" style={{flexDirection: 'row', gap: '2rem'}}>
-          <label className="checkbox-item"><input type="radio" name="life_event" value="Yes" /> Yes</label>
-          <label className="checkbox-item"><input type="radio" name="life_event" value="No" /> No</label>
+          <label className="checkbox-item">
+            <input type="radio" name="life_event" value="Yes" /> Yes
+          </label>
+          <label className="checkbox-item">
+            <input type="radio" name="life_event" value="No" /> No
+          </label>
         </div>
       </div>
 
@@ -147,12 +160,16 @@ export default function ContactForm() {
         <textarea
           id="message"
           name="message"
-          rows="5"
-          placeholder="Share what support you're looking for, your goals, or any scheduling preferences."
+          rows={5}
+          placeholder="Share what you're looking for, your goals, or any scheduling preferences."
         />
       </div>
 
-      <button type="submit" className="btn-gold" style={{width: '100%', textAlign: 'center', fontSize: '1rem', padding: '.9rem'}}>
+      <button
+        type="submit"
+        className="btn-gold"
+        style={{width: '100%', textAlign: 'center', fontSize: '1rem', padding: '.9rem'}}
+      >
         Submit →
       </button>
       <p id="form-msg" style={{fontSize: '.85rem', marginTop: '.75rem', minHeight: '1.2em'}}>

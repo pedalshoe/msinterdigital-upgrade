@@ -1,28 +1,40 @@
 'use client';
 
 import {useState} from 'react';
+
 import {useTranslations} from 'next-intl';
 
+import CalendlyButton from '@/components/CalendlyButton';
+import LocaleSwitcher from '@/components/LocaleSwitcher';
 import {company} from '@/data/siteData';
 import {Link, usePathname} from '@/i18n/navigation';
 
-import CalendlyButton from './CalendlyButton';
-import LocaleSwitcher from './LocaleSwitcher';
+type NavItem = {
+  href: string;
+  label: string;
+  active: boolean;
+};
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations('Navigation');
   const pathname = usePathname();
-  const page = pathname === '/'
-    ? 'home'
-    : pathname.replace(/^\//, '').split('/')[0];
+  const page = pathname === '/' ? 'home' : pathname.replace(/^\//, '').split('/')[0];
   const isServicesPage = ['services', 'counseling-therapy', 'coaching-mentoring'].includes(page);
 
-  const navItems = [
+  const navItems: NavItem[] = [
     {href: '/', label: t('home'), active: page === 'home'},
     {href: '/about', label: t('about'), active: page === 'about'},
-    {href: '/educational-products', label: t('educationalProducts'), active: page === 'educational-products'},
-    {href: '/affiliate-marketing', label: t('affiliateMarketing'), active: page === 'affiliate-marketing'},
+    {
+      href: '/educational-products',
+      label: t('educationalProducts'),
+      active: page === 'educational-products'
+    },
+    {
+      href: '/affiliate-marketing',
+      label: t('affiliateMarketing'),
+      active: page === 'affiliate-marketing'
+    },
     {href: '/contact', label: t('contact'), active: page === 'contact'}
   ];
 
@@ -61,8 +73,12 @@ export default function Header() {
                 {t('supportServices')} ▾
               </Link>
               <div className="dropdown">
-                <Link href="/counseling-therapy" onClick={() => setIsOpen(false)}>{t('counseling')}</Link>
-                <Link href="/coaching-mentoring" onClick={() => setIsOpen(false)}>{t('coaching')}</Link>
+                <Link href="/counseling-therapy" onClick={() => setIsOpen(false)}>
+                  {t('counseling')}
+                </Link>
+                <Link href="/coaching-mentoring" onClick={() => setIsOpen(false)}>
+                  {t('coaching')}
+                </Link>
               </div>
             </li>
             {navItems.slice(2).map((item) => (

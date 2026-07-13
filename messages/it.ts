@@ -1,4 +1,4 @@
-export default {
+const messages = {
   LocaleSwitcher: {
     label: 'Lingua',
     en: 'Inglese',
@@ -37,3 +37,5 @@ export default {
     getStarted: 'Inizia'
   }
 };
+
+export default messages;

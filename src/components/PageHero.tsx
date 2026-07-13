@@ -1,4 +1,20 @@
-export default function PageHero({breadcrumb, eyebrow, title, highlight, description}) {
+import type {ReactNode} from 'react';
+
+type PageHeroProps = {
+  breadcrumb: ReactNode;
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  description: string;
+};
+
+export default function PageHero({
+  breadcrumb,
+  eyebrow,
+  title,
+  highlight,
+  description
+}: PageHeroProps) {
   return (
     <div className="page-hero">
       <div className="container">
