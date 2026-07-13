@@ -11,5 +11,9 @@ type RootLayoutProps = {
 };
 
 export default function RootLayout({children}: RootLayoutProps) {
-  return children;
+  return (
+    <html lang="en" data-scroll-behavior="smooth">
+      <body>{children}</body>
+    </html>
+  );
 }

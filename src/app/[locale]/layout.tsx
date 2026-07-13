@@ -34,20 +34,16 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} data-scroll-behavior="smooth">
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          <Script
-            src="https://assets.calendly.com/assets/external/widget.js"
-            strategy="afterInteractive"
-          />
-          <div className="page-shell">
-            <Header />
-            {children}
-            <Footer />
-          </div>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="afterInteractive"
+      />
+      <div className="page-shell">
+        <Header />
+        {children}
+        <Footer />
+      </div>
+    </NextIntlClientProvider>
   );
 }
